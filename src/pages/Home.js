@@ -4,27 +4,24 @@ import React, {Component} from 'react';
 /** helper import(s)                                                    */
 
 /** component import(s)                                                 */
-import Navigation from './components/Navigation';
-import NavRouter from './router/NavRouter';
 
 /** style import(s)                                                     */
-import './styles/index.scss';
+
 
 /*/
- *  Component: App
+ *  Component: Home
  *  @props {NA}
  *  @EventHandler(s): NA
- *  @Description: App page
+ *  @Description: Home page to house Components
 /*/
-class App extends Component {
+class Home extends Component {
   render(){
     return(
       <div>
-        <Navigation />
-        <NavRouter />
+        <h1>Home Content will go here</h1>
       </div>
     )
   }
 }
 
-export default App
+export default Home

@@ -1,4 +1,5 @@
 const webpack = require('webpack')
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   //entry to bundled js file
@@ -13,20 +14,29 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: ['babel-loader']
+      },
+      {
+        test: /\.scss$/,
+        use: ExtractTextPlugin.extract({
+          fallback: "style-loader",
+          use: "css-loader!sass-loader",
+        })
       }
     ]
   },
   resolve: {
-    extensions: ['*', '.js', '.jsx']
+    extensions: ['*', '.js', '.jsx']  //array of extensions to compile js
   },
-  //The bundled files will result in a bundle.js file which
+
   output: {
-    path: __dirname + '/dist',
-    publicPath: '/',
-    filename: 'bundle.js'
+    path: __dirname + '/dist',  //The bundled files will result in a bundle.js file which
+    publicPath: '/',            //start of the path
+    filename: 'bundle.js'       //output filename
   },
+  //webpack server hot module replacement
   plugins: [
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new ExtractTextPlugin('style.css')
   ],
   //will be generated in our already set up /dist folder. The /dist folder will be used to serve our app.
   devServer: {
