@@ -1,19 +1,27 @@
 /** main import(s)                                                      */
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React, {Component} from 'react';
+
 /** helper import(s)                                                    */
 
 /** component import(s)                                                 */
-import { BrowserRouter } from 'react-router-dom';
-import App from './App';
 
 /** style import(s)                                                     */
-import './styles/index.scss';
 
-ReactDOM.render(
-  (
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  ), document.getElementById("app"));
-module.hot.accept();
+
+/*/
+ *  Component: Navigation
+ *  @props {NA}
+ *  @EventHandler(s): NA
+ *  @Description: NA
+/*/
+class Navigation extends Component {
+  render(){
+    return(
+      <div className="nav-template">
+        
+      </div>
+    )
+  }
+}
+
+export default Navigation
