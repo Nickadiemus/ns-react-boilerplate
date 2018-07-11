@@ -8,7 +8,7 @@ import Navigation from './components/Navigation';
 import NavRouter from './router/NavRouter';
 
 /** style import(s)                                                     */
-import './styles/index.scss';
+
 
 /*/
  *  Component: App
