@@ -8,7 +8,7 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 
 /** style import(s)                                                     */
-import './styles/index.scss';
+import './styles.scss';
 
 ReactDOM.render(
   (

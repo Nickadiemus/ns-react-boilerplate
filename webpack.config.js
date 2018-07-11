@@ -1,12 +1,16 @@
-const webpack = require('webpack')
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const WebpackMd5Hash = require('webpack-md5-hash');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = {
   //entry to bundled js file
   entry: [
-    'react-hot-loader/patch',
     './src/index.js'
   ],
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: '[name].[chunkhash].js'   //output filename
+  },
   //want to use the src/index.js file as entry point to bundle all of its imported files
   module:{
     rules:[
@@ -17,30 +21,24 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        use: ExtractTextPlugin.extract({
-          fallback: "style-loader",
-          use: "css-loader!sass-loader",
-        })
+        use:  [  'style-loader', MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
       }
     ]
   },
-  resolve: {
-    extensions: ['*', '.js', '.jsx']  //array of extensions to compile js
-  },
-
-  output: {
-    path: __dirname + '/dist',  //The bundled files will result in a bundle.js file which
-    publicPath: '/',            //start of the path
-    filename: 'bundle.js'       //output filename
-  },
   //webpack server hot module replacement
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new ExtractTextPlugin('style.css')
+    new MiniCssExtractPlugin({
+      filename: 'style.[contenthash].css',
+    }),
+    new HtmlWebpackPlugin({
+      inject: false,
+      hash: true,
+      template: './src/index.html',
+      filename: 'index.html'
+    }),
+    new WebpackMd5Hash()
   ],
-  //will be generated in our already set up /dist folder. The /dist folder will be used to serve our app.
-  devServer: {
-    contentBase: './dist',
-    hot: true
+  resolve: {
+    extensions: ['*', '.js', '.jsx']  //array of extensions to compile js
   }
 }

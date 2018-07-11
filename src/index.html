@@ -5,10 +5,11 @@
     <title>TITLE_HERE</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="<%=htmlWebpackPlugin.files.chunks.main.css %>">
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="app"></div>
-    <script src="/bundle.js"></script>
+    <script src="<%= htmlWebpackPlugin.files.chunks.main.entry %>"></script>
   </body>
 </html>
