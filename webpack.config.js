@@ -1,7 +1,9 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const WebpackMd5Hash = require('webpack-md5-hash');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+/*  Required Packages                                             */
+const path                  = require('path');
+const HtmlWebpackPlugin     = require('html-webpack-plugin');
+const WebpackMd5Hash        = require('webpack-md5-hash');
+const MiniCssExtractPlugin  = require("mini-css-extract-plugin");
+const CleanWebpackPlugin    = require('clean-webpack-plugin')
 module.exports = {
   //entry to bundled js file
   entry: [
@@ -21,12 +23,13 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        use:  [  'style-loader', MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
+        use:  [  'style-loader', MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader','sass-loader']
       }
     ]
   },
   //webpack server hot module replacement
   plugins: [
+    new CleanWebpackPlugin('dist', {}),
     new MiniCssExtractPlugin({
       filename: 'style.[contenthash].css',
     }),
