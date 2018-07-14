@@ -6,7 +6,7 @@ import React, {Component} from 'react';
 /** component import(s)                                                 */
 
 /** style import(s)                                                     */
-
+import '../styles/App.scss';
 
 /*/
  *  Component: Home
@@ -17,7 +17,7 @@ import React, {Component} from 'react';
 class Home extends Component {
   render(){
     return(
-      <div>
+      <div className="nav-template app">
         <h1>Home Content will go here</h1>
       </div>
     )
