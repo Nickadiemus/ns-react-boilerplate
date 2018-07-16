@@ -4,7 +4,9 @@ const path                  = require('path');
 const HtmlWebpackPlugin     = require('html-webpack-plugin');
 const WebpackMd5Hash        = require('webpack-md5-hash');
 const MiniCssExtractPlugin  = require("mini-css-extract-plugin");
-const CleanWebpackPlugin    = require('clean-webpack-plugin')
+const CleanWebpackPlugin    = require('clean-webpack-plugin');
+//used to load style loader in dev
+const devMode = process.env.NODE_ENV !== 'production';
 
 module.exports = {
   //entry to bundled js file
@@ -26,7 +28,8 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        use:  [  'style-loader', MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader','sass-loader']
+        use:  [  devMode ? 'style-loader' : MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader','sass-loader'],
+        exclude: ["node_modules"]
       }
     ]
   },
@@ -42,8 +45,8 @@ module.exports = {
       template: './src/index.html',
       filename: 'index.html'
     }),
-    new WebpackMd5Hash(),
-    new webpack.HotModuleReplacementPlugin()
+    new WebpackMd5Hash()
+    // new webpack.HotModuleReplacementPlugin()
   ],
   resolve: {
     extensions: ['*', '.js', '.jsx']  //array of extensions to compile js

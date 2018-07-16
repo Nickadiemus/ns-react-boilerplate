@@ -17,9 +17,7 @@ import '../styles/App.scss';
 class Home extends Component {
   render(){
     return(
-      <div className="nav-template app">
-        <h1>Home Content will go here</h1>
-      </div>
+      <h1 className = "template">Content Starts Here</h1>
     )
   }
 }
